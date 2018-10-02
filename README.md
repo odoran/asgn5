@@ -1,26 +1,25 @@
 # Campus Dining Line Text Bot
 
-  After conducting interviews, I concluded that a text messaging application focused on campus dining would be the most useful for Vanderbilt students. I came to this conclusion by conducting three interviews that focused on asking questions about three main campus categories: events, classes and dining. Although some of my interviewees found a lack of communication from Vanderbilt in the events and classes categories, I found that complaints about dining were consistent across all interviewees. 
+  After conducting interviews, I concluded that a text messaging application for campus dining would be the most useful for Vanderbilt students. I came to this conclusion by conducting three interviews that focused on asking questions about three main campus categories: events, classes and dining. Although some of my interviewees found a lack of communication from Vanderbilt in the events and classes categories, I found that complaints about dining were consistent across all interviewees. 
   
-  Specififcally, I am going to implement a text messaging application that Vanderbilt students can use to find out about wait times of different campus dining lines. The application will allow students to report and ask the specific wait times for dining lines on campus. Any student will be allowed to report line times, and any student will be able to ask about line times. When a student asks for a specific wait time, it will send that student the most recent time reported. 
+  Specififcally, I am going to implement a text messaging application that Vanderbilt students can use to find out about wait times of different campus dining lines. The application will allow students to report and ask the specific wait times for dining lines on campus. Any student will be allowed to report line times, and any student will be able to ask about line times. When a student asks for a specific wait time, the application will send that student the most recent time reported. 
   
-  In conclusion, although this application seems simple, I believe it is one of high demand. Students often spend so much time in lines waiting for food that they are either late to class or skip meals because they do not want to be late for class. In addition, having a text application that the entire Vanderbilt student body can contribute to is essential because knowing the wait time of different lines for campus dining options relies on time and place specific information that most of the time a network of friends cannot answer. As a result, I believe this application will be an asset to Vanderbilt students and allow them to be more efficient with their time. 
+  In conclusion, although this application seems simple, I believe it is one of high demand. Students often spend so much time in lines waiting for food that they are either late to class or skip meals because they do not want to be late for class. In addition, having a texting application that the entire Vanderbilt student body can contribute to is essential because knowing the wait times of different campus dining lines relies on time and place specific information that a network of friends often cannot provide. As a result, I believe this application will be an asset to Vanderbilt students and allow them to be more efficient with their time. 
 
 # Questions:
  1.	What Vanderbilt portal do you use the most frequently? What do you like about it?
  2.	When you text your friends on campus, is it mostly to meet up for lunch, to study or do homework, to attend a club or
     event, or if other please specify?
- 3.	What Vanderbilt-related information do you find yourself trying to look-up the most frequently?
- 4.	How do you go about finding reviews about classes you want to take? Do you find it to be an easy or difficult task?
- 5.	How do you find places on campus to study? Do you find it to be an easy or difficult task?
- 6.	How do you find out about events on campus, such as club events, speakers or sports games? Do you find that any or all of 
-    these events are under publicized?
- 7.	How do you register for events on campus? Do you find it to be an easy or difficult task?
- 8.	What do you do to find out about campus dining options? Do you find it to be an easy or difficult task?
+ 3.	What Vanderbilt-related information do you find yourself trying to look up the most frequently?
+ 4.	How do you find reviews about classes you want to take? Is it an easy or difficult task?
+ 5.	How do you find places on campus to study? Is it an easy or difficult task?
+ 6.	How do you find out about events on campus, such as club events, speakers or sports games? Do any or all of 
+    these events seem under publicized?
+ 7.	How do you register for events on campus? Is it an easy or difficult task?
+ 8.	What do you do to find out about campus dining options? Is it an easy or difficult task?
  9.	Do you know when campus dining options open and close?
- 10. Do you find yourself waiting in campus dining lines often?
- 11. What area of communication do you think needs to be improved the most: events, class reviews, or campus 
-     dining?
+ 10. Do you wait in campus dining lines often?
+ 11. What area of communication do you think needs to be improved the most: events, classes, or dining?
      
 # Answers: 
 
