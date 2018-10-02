@@ -1,7 +1,9 @@
 # Campus Dining Line Text Bot
 
   After conducting interviews, I concluded that a text messaging application focused on campus dining would be the most useful for Vanderbilt students. I came to this conclusion by conducting three interviews that focused on asking questions about three main campus categories: events, classes and dining. Although some of my interviewees found a lack of communication from Vanderbilt in the events and classes categories, I found that complaints about dining were consistent across all interviewees. 
+  
   Specififcally, I am going to implement a text messaging application that Vanderbilt students can use to find out about wait times of different campus dining lines. The application will allow students to report and ask the specific wait times for dining lines on campus. Any student will be allowed to report line times, and any student will be able to ask about line times. When a student asks for a specific wait time, it will send that student the most recent time reported. 
+  
   In conclusion, although this application seems simple, I believe it is one of high demand. Students often spend so much time in lines waiting for food that they are either late to class or skip meals because they do not want to be late for class. In addition, having a text application that the entire Vanderbilt student body can contribute to is essential because knowing the wait time of different lines for campus dining options relies on time and place specific information that most of the time a network of friends cannot answer. As a result, I believe this application will be an asset to Vanderbilt students and allow them to be more efficient with their time. 
 
 # Questions:
