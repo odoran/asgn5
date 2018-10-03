@@ -55,12 +55,12 @@
   -	I find out mainly through my sorority. I think a majority of the events are under publicized.
 
 ## Question 7:
-  -	I usually just Google the events or the speaker's name. I don’t think it is difficult.
+  -	I usually search on Google the events or the speaker's name. I don’t think it is difficult.
   -	I don’t know how to register for events on campus. 
   -	I register for events at the Rand wall. I think it’s a good system.
 
 ## Question 8:
-  -	I google Vanderbilt dining all of the time. I find it difficult.
+  -	I search on Google Vanderbilt dining all of the time. I find it difficult.
   -	I just go to the different places and check it out. I wish there was an easier way to search for these options.
   -	I use the Vanderbilt Menus application. It makes it easy. 
 
