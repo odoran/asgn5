@@ -146,7 +146,7 @@ I plan on keeping this same structure when adapting the texting application to s
      about the wait time. This timestamp will reveal how accurate the time reported is.
      
      Implementation Step: 
-     This will involve saving the timestamp of when the user submits a timestamp. I plan on importing the java.sql.Timestamp
+     This will involve saving the timestamp of when the user submits a timestamp. I plan on importing the java.util.Date 
      library for this purpose.
   
 
@@ -157,11 +157,10 @@ I plan on keeping this same structure when adapting the texting application to s
      weekdays the lines are closed at different times than the weekend.
      
      Implementation Step: 
-     This will involve transforming the timestamp in order to also specify the day of the week, so that the closing time for
-     that line is accurate. I plan on organizing the closing times by hard coding in the information into a nested map. In
-     order to generate a date timestamp, I will be importing the java.util.Date library.
+     The java.util.Date library creates a timestamp that specifies the day of the week. I plan on organizing the closing times
+     by hard coding in the information into a nested map. 
 
-5. Create the “answer” that is sent to the user who asked the wait time
+6. Create the “answer” that is sent to the user who asked the wait time
 
      Motivation: 
      This string should include the specific wait time recorded, concatenated to the time the wait time was recorded and when
