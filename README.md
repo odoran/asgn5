@@ -157,5 +157,6 @@ I plan on keeping this same structure when adapting the texting application to s
 3.	Test that the time stamp sent is correct
 4.	Test that the closing time is correct
 
+## Maintenance and Sustainability
 
 
