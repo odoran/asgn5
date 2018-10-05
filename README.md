@@ -82,50 +82,50 @@
  # Requirements
  
  ## Use cases
-  - As a Vanderbilt student, I want to be able to ask for a wait time for a campus dining line, so that I can be efficient
+  - As a Vanderbilt student, I want to be able to ask for a campus dining line wait time, so that I can be efficient
     with my time and plan my meals accordingly. 
-  -	As a Vanderbilt student, I want to be able to submit wait times for campus dining lines, so that I can help out my fellow
+  -	As a Vanderbilt student, I want to be able to submit campus dining line wait times, so that I can help out my fellow
     peers and count on them to help me in the future.
   -	As a student, I want to be able to submit waiting times for the same line more than once or for different lines, so that I
     can provide accurate and helpful information.
-  -	As a student, I want to receive a wait time that has the time stamp that time was submitted, so that I know how accurate
-    the reported time is.
-  -	As a student, I want to receive a wait time that has the closing time for that specific line, so that I know if I will be
-    able to get food before the line closes. 
+  -	As a student, I want to receive a wait time that has a corresponding timestamp of when that time was recorded, so that I
+    know how accurate the reported time is.
+  -	As a student, I want to receive a wait time that has the corresponding closing time for that specific line, so that I know
+    if I will be able to get food before the line closes. 
 
 ## Simplified List of Requirements:
   -	Any student can ask for a wait time for a campus dining line
   -	Any student can submit a wait time for a campus dining line
   -	Students are not limited to how many times they can submit times or ask for times
-  -	Each wait time submission must record when that submission was made
-  -	Each wait time submission must also include the closing time for that specific line 
+  -	Each wait time submission must record when that submission was made and include it in the wait time response
+  -	Each wait time response must include the closing time for that specific line 
 
  # Development Approach
  
 The basic structure of the texting application has already been built; therefore, my developmental approach is specific to turning this basic texting application into a texting application that reports the waiting times for campus dining lines.
 
-The way that the texting application currently works is that a user can interact with the application in two ways. The first way is that a user can register as an “expert” for a topic by texting “expert [insert specific topic]”. Once a user sends a text registering him or herself as an expert on that topic, their job then includes that they answer any questions that another user has specific to that topic. The second way the application works is that a user can ask questions about a specific topic and expect to receive answers to those questions if there are any experts registered for that topic. 
+The way that the texting application currently works is that a user can interact with the application in two ways. The first way is that a user can register as an “expert” for a topic by texting “expert [insert specific topic]”. Once a user sends a text registering him or herself as an expert on that topic, their job then includes that they answer any questions that another user has specific to that topic. The second way the application works is that a user can ask questions about a specific topic by texting "answer [insert specific topic] [insert question]", and expect to receive answers to those questions if there are any experts registered for that topic. 
 
-I plan on keeping this same structure when adapting the texting application to serve as a campus dining lines wait time texting application. The steps to adapting the texting application are:
+I plan on keeping this same structure when adapting the texting application to serve as a campus dining lines wait time texting application. The basic structure of the texting application has been throughouly tested, so I am confident that the foundation of the application has no errors or bugs. The steps to adapting the texting application are:
 
 ## Implementation
 
 1. Update the keywords
 
      Motivation:
-     I want to change the keyword “expert” to be “report” so that it makes sense in the context of the   application.
-     Therefore, when the application will know that a user is submitting a wait time if their submission starts with the word
+     I want to change the keyword “expert” to be “report” so that it makes sense in the context of the application.
+     Therefore, the application will know that a user is submitting a wait time if their submission starts with the word
      “report”.
       
      Implementation Step:
-     This step will involve replacing the word “expert” in the “queries” map to “report”
+     This step will involve replacing the word “expert” in the “queries” map to “report”.
      
 2. Update the string that the wait time reporter can submit 
 
      Motivation:
-     To report the line you are waiting on, the reporter can not only accept the topic which will be line name, but will also
-     have to accept a string that tells the specific wait time. This means that the answer that the user wants for that
-     specific line will be saved automatically, and will be the answer to the person asking.
+     To report the line you are waiting on, the reporter can not only accept the topic which will be the line name, but will
+     also have to accept a string that tells the specific wait time. This means that the answer to anyone asking the wait time  
+     for that specific line will be saved automatically. 
      
      Implementation Step: 
      This step will involve automatically saving the wait time, and concatenating it to the timestamp and its closing time as
@@ -138,25 +138,27 @@ I plan on keeping this same structure when adapting the texting application to s
      the line closes
      
      Implementation Step: 
-     I will have to save the timestamp at the time the user submits a time stamp and concatenate it to the answer string.
+     I will have to save the timestamp at the time the user submits a timestamp and concatenate it to the answer string.
      
 4. Research all the times the lines closes and varies by day
 
      Motivation: 
-     Generate a time stamp that specifies the day of the week, not just the date. This is important because during the
+     Generate a timestamp that specifies the day of the week, not just the date. This is important because during the
      weekdays the lines are closed at different times than the weekend.
      
      Implementation Step: 
-     I will then have to transform the time stamp in order to also specify the day of the week, so that the closing time for
-     that line is accurate. For example, on weekends, the lines close earlier. I plan on organizing the closing times by hard
-     coding in the information into a nested map.
+     I will then have to transform the timestamp in order to also specify the day of the week, so that the closing time for
+     that line is accurate. I plan on organizing the closing times by hard coding in the information into a nested map.
      
 ## Testing
 1.	Test that a user can register for the same line with a different time
-2.	Test that when the user asks the line time, the user gets an answer with no wait time
+2.	Test that when the user asks the wait time, the user gets the most recent report submission 
 3.	Test that the time stamp sent is correct
-4.	Test that the closing time is correct
+4.	Test that the closing time is correct for every day of week
+5.  Test that if a no time has every been registered for the line a user is asking for, they get a message saying so.
 
 ## Maintenance and Sustainability
+
+
 
 
