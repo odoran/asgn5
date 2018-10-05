@@ -116,18 +116,22 @@ I plan on keeping this same structure when adapting the texting application to s
      I want to change the keyword “expert” to be “report” so that it makes sense in the context of the application.
      
      Implementation Step:
-     This step will involve replacing the word “expert” in the “queries” map to “report”.
+     This will involve replacing the word “expert” in the “queries” map to “report”.
      
 2. Update the string that the wait time reporter can submit 
 
      Motivation:
-     To report the line you are waiting on, the reporter can not only accept the topic which will be the line name, but will
+     To report, you will submit the line you are waiting on and the specific time for that line.
+     
+     "report [line name] [wait time]". This structure is similar to the original application because 
+     the reporter can not only accept the topic which will be the line name, but will
      also have to accept a string that tells the specific wait time. This means that the answer to anyone asking the wait time  
      for that specific line will be saved automatically. 
      
      Implementation Step: 
-     This step will involve automatically saving the wait time, and concatenating it to the timestamp and its closing time as
-     the “answer” set in the function answer-question. Therefore, I will have to update and simplify this function
+     This will updating the format of how information from reporters is parsed. Right now, the format is "report [topic]",
+     where the topic can be the specific line. However, in addition to the line, the reporter has to record the wait time. As
+     a result, this string needs to be updated to be sent and received as "report [topic] [time]". 
      
 3. Create the “answer” that is sent to the user who asked of the wait time
 
@@ -136,7 +140,7 @@ I plan on keeping this same structure when adapting the texting application to s
      the line closes
      
      Implementation Step: 
-     I will have to save the timestamp at the time the user submits a timestamp and concatenate it to the answer string.
+     This will involve saving the timestamp of when the user submits a timestamp and concatenate it to the answer string.
      
 4. Research all the times the lines closes and varies by day
 
@@ -145,10 +149,11 @@ I plan on keeping this same structure when adapting the texting application to s
      weekdays the lines are closed at different times than the weekend.
      
      Implementation Step: 
-     I will then have to transform the timestamp in order to also specify the day of the week, so that the closing time for
+     This will involve transforming the timestamp in order to also specify the day of the week, so that the closing time for
      that line is accurate. I plan on organizing the closing times by hard coding in the information into a nested map.
      
 ## Testing
+
 1.	Test that a user can register for the same line with a different time
 2.	Test that when the user asks the wait time, the user gets the most recent report submission 
 3.	Test that the time stamp sent is correct
@@ -156,6 +161,10 @@ I plan on keeping this same structure when adapting the texting application to s
 5.  Test that if a no time has every been registered for the line a user is asking for, they get a message saying so.
 
 ## Maintenance and Sustainability
+
+Because the foundation of this application has been throughouly tested, I believe the adaptions will be easy to maintain and sustain. The adaptions to the application are 
+
+
 
 
 
