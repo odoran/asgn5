@@ -106,7 +106,7 @@ The basic structure of the texting application has already been built; therefore
 
 The way that the texting application currently works is that a user can interact with the application in two ways. The first way is that a user can register as an “expert” for a topic by texting “expert [insert specific topic]”. Once a user sends a text registering him or herself as an expert on that topic, his or her job includes that he or she answer any questions that another user has specific to that topic. The second way the application works is that a user can ask questions about a specific topic by texting "answer [insert specific topic] [insert question]", and expect to receive answers to those questions if there are any experts registered for that topic. 
 
-I plan on keeping this same structure when adapting the texting application to serve as a campus dining lines wait time texting application. The basic structure of the texting application has been throughouly tested, so I am confident that the foundation of the application has no errors or bugs. 
+I plan on keeping this same structure when adapting the texting application to serve as a campus dining line texting application. The basic structure of the texting application has been throughouly tested, so I am confident that the foundation of the application lacks errors and bugs. In addition, the following five implementation steps listed below will be completed by October 16th, refraining any unexpected errors or bugs. 
 
 ## Implementation
 
@@ -118,17 +118,27 @@ I plan on keeping this same structure when adapting the texting application to s
      Implementation Step:
      This will involve replacing the word “expert” in the “queries” map to “report”.
      
-2. Update the string that the wait time reporter can submit 
+2. Update the string that the wait time reporter can text 
 
      Motivation:
-     To report, you will submit the line you are waiting on and the specific time for that line.
+     To report, you will text the line you are waiting on and the specific time for that line.
     
      Implementation Step: 
      This will updating the format of how information from reporters is parsed. Right now, the format is "report [topic]",
      where the topic can be the specific line. However, in addition to the line, the reporter has to record the wait time. As
      a result, this string needs to be updated to be sent and received as "report [topic] [time]". 
+
+3. Update the string that the wait time asker text
+
+     Motivation:
+     To ask, you will text the line you want to go to.
+    
+     Implementation Step: 
+     This will updating the format of how information from users that ask a wait time is parsed. Right now, the format is
+     "ask [topic] [question]", where the topic can be the specific line. A question no longer needs to be asked because the
+     application's only purpose is to report wait times for campus dining lines. 
      
-3. Create the “answer” that is sent to the user who asked of the wait time
+4. Create the “answer” that is sent to the user who asked of the wait time
 
      Motivation: 
      This string should include the specific wait time recorded, concatenated to the time the wait time was recorded and when
@@ -137,7 +147,7 @@ I plan on keeping this same structure when adapting the texting application to s
      Implementation Step: 
      This will involve saving the timestamp of when the user submits a timestamp and concatenate it to the answer string.
      
-4. Research all the times the lines closes and varies by day
+5. Research all the times the lines closes and varies by day
 
      Motivation: 
      Generate a timestamp that specifies the day of the week, not just the date. This is important because during the
@@ -157,7 +167,11 @@ I plan on keeping this same structure when adapting the texting application to s
 
 ## Maintenance and Sustainability
 
-Because the foundation of this application has been throughouly tested, I believe a majority of the adaptions will be easy to maintain and sustain. I believe that the part of the applicaiton that is not really sustainable is the hard coded map of the closing times of dining hall lines because there will be holidays and changes made to these schedules. Therefore, as a future improvement, I would like those closing times to eventually be recorded by scanning the online website for the times and saving them. 
+The majority of the adaptions will be maintainable and sustainable because they do not change the foundation of the project, just the strings being sent and received as text messages. 
+
+The one part of the application that is not completely sustainable is the hard coded map of the closing times of dining hall lines because there will be holidays and changes made to these schedules that will conflict with the map. Therefore, as a future improvement, I would like those closing times to eventually be recorded by scanning the online website for the times and saving them. 
+
+The main issue with sustainability and maintainability lies within the student body becasue this text messaging application has no purpose if nobody submits wait times. I forsee this being an issue in the beginning when the application is new; however, based on my research, I am confident that this application is one of high demand.
 
 
 
