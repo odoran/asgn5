@@ -162,7 +162,7 @@ I plan on keeping this same structure when adapting the texting application to s
 
 ## Maintenance and Sustainability
 
-Because the foundation of this application has been throughouly tested, I believe the adaptions will be easy to maintain and sustain. The adaptions to the application are 
+Because the foundation of this application has been throughouly tested, I believe a majority of the adaptions will be easy to maintain and sustain. I believe that the part of the applicaiton that is not really sustainable is the hard coded map of the closing times of dining hall lines because there will be holidays and changes made to these schedules. Therefore, as a future improvement, I would like those closing times to eventually be recorded by scanning the online website for the times and saving them. 
 
 
 
