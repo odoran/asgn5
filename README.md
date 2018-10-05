@@ -104,9 +104,9 @@
  
 The basic structure of the texting application has already been built; therefore, my developmental approach is specific to turning this basic texting application into a texting application that reports the waiting times for campus dining lines.
 
-The way that the texting application currently works is that a user can interact with the application in two ways. The first way is that a user can register as an “expert” for a topic by texting “expert [insert specific topic]”. Once a user sends a text registering him or herself as an expert on that topic, their job then includes that they answer any questions that another user has specific to that topic. The second way the application works is that a user can ask questions about a specific topic by texting "answer [insert specific topic] [insert question]", and expect to receive answers to those questions if there are any experts registered for that topic. 
+The way that the texting application currently works is that a user can interact with the application in two ways. The first way is that a user can register as an “expert” for a topic by texting “expert [insert specific topic]”. Once a user sends a text registering him or herself as an expert on that topic, his or her job includes that he or she answer any questions that another user has specific to that topic. The second way the application works is that a user can ask questions about a specific topic by texting "answer [insert specific topic] [insert question]", and expect to receive answers to those questions if there are any experts registered for that topic. 
 
-I plan on keeping this same structure when adapting the texting application to serve as a campus dining lines wait time texting application. The basic structure of the texting application has been throughouly tested, so I am confident that the foundation of the application has no errors or bugs. The steps to adapting the texting application are:
+I plan on keeping this same structure when adapting the texting application to serve as a campus dining lines wait time texting application. The basic structure of the texting application has been throughouly tested, so I am confident that the foundation of the application has no errors or bugs. 
 
 ## Implementation
 
