@@ -124,30 +124,33 @@ I plan on keeping this same structure when adapting the texting application to s
      To report, you will text the line you are waiting on and the specific time for that line.
     
      Implementation Step: 
-     This will updating the format of how information from reporters is parsed. Right now, the format is "report [topic]",
+     This will update the format of how information from reporters is parsed. Right now, the format is "report [topic]",
      where the topic can be the specific line. However, in addition to the line, the reporter has to record the wait time. As
      a result, this string needs to be updated to be sent as "report [topic] [time]". 
 
-3. Update the string that the wait time asker text
+3. Update the string that the wait time asker can text
 
      Motivation:
      To ask, you will text the line you want to go to.
     
      Implementation Step: 
-     This will updating the format of how information from users that ask a wait time is parsed. Right now, the format is
+     This will update the format of how information from users that ask a wait time is parsed. Right now, the format is
      "ask [topic] [question]", where the topic can be the specific line. A question no longer needs to be asked because the
-     application's only purpose is to report wait times for campus dining lines. 
+     application's only purpose is to report wait times for campus dining lines, and this information is saved once a report
+     is texted. 
      
-4. Create the “answer” that is sent to the user who asked of the wait time
+4. Save a timestamp for when the reporter submits a wait time
 
      Motivation: 
-     This string should include the specific wait time recorded, concatenated to the time the wait time was recorded and when
-     the line closes
+     The time a wait time is reported should be recorded, so that this information can be provided to the person who asked
+     about the wait time. This timestamp will reveal how accurate the time reported is.
      
      Implementation Step: 
-     This will involve saving the timestamp of when the user submits a timestamp and concatenate it to the answer string.
-     
-5. Research all the times the lines closes and varies by day
+     This will involve saving the timestamp of when the user submits a timestamp. I plan on importing the java.sql.Timestamp
+     library for this purpose.
+  
+
+5. Research the times each line closes every day
 
      Motivation: 
      Generate a timestamp that specifies the day of the week, not just the date. This is important because during the
@@ -155,7 +158,18 @@ I plan on keeping this same structure when adapting the texting application to s
      
      Implementation Step: 
      This will involve transforming the timestamp in order to also specify the day of the week, so that the closing time for
-     that line is accurate. I plan on organizing the closing times by hard coding in the information into a nested map.
+     that line is accurate. I plan on organizing the closing times by hard coding in the information into a nested map. In
+     order to generate a date timestamp, I will be importing the java.util.Date library.
+
+5. Create the “answer” that is sent to the user who asked the wait time
+
+     Motivation: 
+     This string should include the specific wait time recorded, concatenated to the time the wait time was recorded and when
+     the line closes
+     
+     Implementation Step: 
+     This will involve saving the timestamp of when the user submits a timestamp, and concatenate it and the closing time to
+     the answer string.
      
 ## Testing
 
