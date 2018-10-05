@@ -122,12 +122,7 @@ I plan on keeping this same structure when adapting the texting application to s
 
      Motivation:
      To report, you will submit the line you are waiting on and the specific time for that line.
-     
-     "report [line name] [wait time]". This structure is similar to the original application because 
-     the reporter can not only accept the topic which will be the line name, but will
-     also have to accept a string that tells the specific wait time. This means that the answer to anyone asking the wait time  
-     for that specific line will be saved automatically. 
-     
+    
      Implementation Step: 
      This will updating the format of how information from reporters is parsed. Right now, the format is "report [topic]",
      where the topic can be the specific line. However, in addition to the line, the reporter has to record the wait time. As
