@@ -126,7 +126,7 @@ I plan on keeping this same structure when adapting the texting application to s
      Implementation Step: 
      This will updating the format of how information from reporters is parsed. Right now, the format is "report [topic]",
      where the topic can be the specific line. However, in addition to the line, the reporter has to record the wait time. As
-     a result, this string needs to be updated to be sent and received as "report [topic] [time]". 
+     a result, this string needs to be updated to be sent as "report [topic] [time]". 
 
 3. Update the string that the wait time asker text
 
