@@ -93,7 +93,7 @@
   -	As a student, I want to receive a wait time that has the corresponding closing time for that specific line, so that I know
     if I will be able to get food before the line closes. 
 
-## Simplified List of Requirements:
+ ## Simplified List of Requirements
   -	Any student can ask for a wait time for a campus dining line
   -	Any student can submit a wait time for a campus dining line
   -	Students are not limited to how many times they can submit times or ask for times
