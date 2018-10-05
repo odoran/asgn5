@@ -110,14 +110,14 @@ I plan on keeping this same structure when adapting the texting application to s
 
 ## Implementation
 
-1.	Update the keywords
+## Step One: Update the keywords
      ### Motivation
       I want to change the keyword “expert” to be “report” so that it makes sense in the context of the   application.
       Therefore, when the application will know that a user is submitting a wait time if their submission starts with the word
       “report”.
     ### Implementation Step
      This step will involve replacing the word “expert” in the “queries” map to “report”
-2.	Update the string that the wait time reporter can submit 
+## Step Two: Update the string that the wait time reporter can submit 
     ### Motivation
      To report the line you are waiting on, the reporter can not only accept the topic which will be line name, but will also
      have to accept a string that tells the specific wait time. This means that the answer that the user wants for that
@@ -125,13 +125,13 @@ I plan on keeping this same structure when adapting the texting application to s
     ### Implementation Step
      This step will involve automatically saving the wait time, and concatenating it to the timestamp and its closing time as
      the “answer” set in the function answer-question. Therefore, I will have to update and simplify this function
-3.	Create the “answer” that is sent to the user who asked of the wait time
+## Step Three: Create the “answer” that is sent to the user who asked of the wait time
     ### Motivation
      This string should include the specific wait time recorded, concatenated to the time the wait time was recorded and when
      the line closes
     ### Implementation Step
      I will have to save the timestamp at the time the user submits a time stamp and concatenate it to the answer string. 
-4.	Research all the times the lines closes and varies by day
+## Step Four: Research all the times the lines closes and varies by day
     ### Motivation
      Generate a time stamp that specifies the day of the week, not just the date. This is important because during the
      weekdays the lines are closed at different times than the weekend
