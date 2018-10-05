@@ -114,9 +114,7 @@ I plan on keeping this same structure when adapting the texting application to s
 
      Motivation:
      I want to change the keyword “expert” to be “report” so that it makes sense in the context of the application.
-     Therefore, the application will know that a user is submitting a wait time if their submission starts with the word
-     “report”.
-      
+     
      Implementation Step:
      This step will involve replacing the word “expert” in the “queries” map to “report”.
      
