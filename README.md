@@ -2,7 +2,7 @@
 
   After conducting interviews, I concluded that a text messaging application for campus dining would be the most useful for Vanderbilt students. I came to this conclusion by conducting three interviews that focused on asking questions about three main campus categories: events, classes and dining. Although some of my interviewees found a lack of communication from Vanderbilt in the events and classes categories, I found that complaints about dining were consistent across all interviewees. 
   
-  Specififcally, I am going to implement a text messaging application that Vanderbilt students can use to find out about wait times of different campus dining lines. The application will allow students to report and ask the specific wait times for dining lines on campus. Any student will be allowed to report line times, and any student will be able to ask about line times. When a student asks for a specific wait time, the application will send that student the most recent time reported. 
+  Specifically, I am going to implement a text messaging application that Vanderbilt students can use to find out about wait times of different campus dining lines. The application will allow students to report and ask the specific wait times for dining lines on campus. Any student will be allowed to report line times, and any student will be able to ask about line times. When a student asks for a specific wait time, the application will send that student the most recent time reported. 
   
   In conclusion, although this application seems simple, I believe it is one of high demand. Students often spend so much time in lines waiting for food that they are either late to class or skip meals because they do not want to be late for class. In addition, having a texting application that the entire Vanderbilt student body can contribute to is essential because knowing the wait times of different campus dining lines relies on time and place specific information that a network of friends often cannot provide. As a result, I believe this application will be an asset to Vanderbilt students and allow them to be more efficient with their time. 
 
@@ -110,7 +110,7 @@ I plan on keeping this same structure when adapting the texting application to s
 
 ## Implementation
 
-## Step One: Update the keywords
+### Step One: Update the keywords
      ### Motivation
       I want to change the keyword “expert” to be “report” so that it makes sense in the context of the   application.
       Therefore, when the application will know that a user is submitting a wait time if their submission starts with the word
