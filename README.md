@@ -163,11 +163,11 @@ I plan on keeping this same structure when adapting the texting application to s
 6. Create the “answer” that is sent to the user who asked the wait time
 
      Motivation: 
-     This string should include the specific wait time recorded, concatenated to the time the wait time was recorded and when
-     the line closes
+     This string should include the specific  wait time recorded, time the wait time was recorded, and when
+     the line closes.
      
      Implementation Step: 
-     This will involve saving the timestamp of when the user submits a timestamp, and concatenate it and the closing time to
+     This will involve saving the timestamp of when the user submits a timestamp, and concatenating it and the closing time to
      the answer string.
      
 ## Testing
@@ -175,7 +175,7 @@ I plan on keeping this same structure when adapting the texting application to s
 1.	Test that a user can register for the same line with a different time
 2.	Test that when the user asks the wait time, the user gets the most recent report submission 
 3.	Test that the time stamp sent is correct
-4.	Test that the closing time is correct for every day of week
+4.	Test that the closing time is correct for every day of the week
 5.  Test that if a no time has every been registered for the line a user is asking for, they get a message saying so.
 
 ## Maintenance and Sustainability
@@ -184,7 +184,7 @@ The majority of the adaptions will be maintainable and sustainable because they 
 
 The one part of the application that is not completely sustainable is the hard coded map of the closing times of dining hall lines because there will be holidays and changes made to these schedules that will conflict with the map. Therefore, as a future improvement, I would like those closing times to eventually be recorded by scanning the online website for the times and saving them. 
 
-The main issue with sustainability and maintainability lies within the student body becasue this text messaging application has no purpose if nobody submits wait times. I forsee this being an issue in the beginning when the application is new; however, based on my research, I am confident that this application is one of high demand.
+The main issue with sustainability and maintainability lies within the student body because this text messaging application has no purpose if nobody submits wait times. I forsee this being an issue in the beginning when the application is new; however, based on my research, I am confident that this application is one of high demand.
 
 
 
