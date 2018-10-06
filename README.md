@@ -167,8 +167,8 @@ I plan on keeping this same structure when adapting the texting application to s
      the line closes.
      
      Implementation Step: 
-     This will involve saving the timestamp of when the user submits a timestamp, and concatenating it and the closing time to
-     the answer string.
+     This will involve saving the answer as a concatenated string of the wait time, the timestamp of when it was recorded, and  
+     the time the line closes.
      
 ## Testing
 
@@ -182,7 +182,7 @@ I plan on keeping this same structure when adapting the texting application to s
 
 The majority of the adaptions will be maintainable and sustainable because they do not change the foundation of the project, just the strings being sent and received as text messages. 
 
-The one part of the application that is not completely sustainable is the hard coded map of the closing times of dining hall lines because there will be holidays and changes made to these schedules that will conflict with the map. Therefore, as a future improvement, I would like those closing times to eventually be recorded by scanning the online website for the times and saving them. 
+The one part of the application that is not completely sustainable is the hard coded map of the closing times of dining hall lines because there will be holidays and changes made to these schedules that will conflict with the map. Therefore, as a future improvement, I would like those closing times to eventually be recorded by scanning the Vanderbilt's campus dining website for the times and saving them. 
 
 The main issue with sustainability and maintainability lies within the student body because this text messaging application has no purpose if nobody submits wait times. I forsee this being an issue in the beginning when the application is new; however, based on my research, I am confident that this application is one of high demand.
 
