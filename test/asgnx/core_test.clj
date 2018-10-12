@@ -186,21 +186,26 @@
           smgr   (kvstore/create state)
           system {:state-mgr smgr
                   :effect-handlers ehdlrs}]
-      (is (= "There are no experts on that topic."
+      (is (= "There are no wait times reported for that line."
              (<!! (handle-message
                     system
                     "test-user"
-                    "ask food best burger in nashville"))))
-      (is (= "test-user is now an expert on food."
+                    "ask rand-bowls"))))
+      (is (= "test-user successfully reported a wait time for rand-bowls as 3 minutes."
              (<!! (handle-message
                     system
                     "test-user"
-                    "expert food"))))
-      (is (= "Asking 1 expert(s) for an answer to: \"what burger\""
+                    "report rand-bowls 3"))))
+      (is (= "The wait time is 3 minutes."
              (<!! (handle-message
                     system
                     "test-user"
-                    "ask food what burger"))))
+                    "ask rand-bowls"))))
+      (is (= "That is not a valid dining line."
+             (<!! (handle-message)
+                  system
+                  "test-user"
+                  "ask rand-bows")))
       (is (= "what burger"
              (<!! (pending-send-msgs system "test-user"))))
       (is (= "test-user2 is now an expert on food."

@@ -5,6 +5,9 @@
              :refer [put! get! list! remove!]]))
 
 
+(defn safe-key-str [s]
+    (string/replace s #"[^a-zA-Z0-9]" ""))
+
 ;; Do not edit!
 ;; A def for the course home page URL.
 (def cs4278-brightspace "https://brightspace.vanderbilt.edu/d2l/home/85892")
@@ -19,6 +22,63 @@
                        "thursday" {:start    8
                                    :end      10
                                    :location "the chairs outside of the Wondry"}})
+
+(def times {"rand-bowls" {:Mon  "11AM - 3PM,4:30 PM - 8PM"
+                                  :Tues "11AM - 3PM"
+                                  :Wed "11AM - 3PM, 4:30 PM - 8PM"
+                                  :Thurs "11AM - 3PM, 4:30 PM - 8PM"
+                                  :Fri "11AM - 3PM"
+                                  :Sat "11AM - 3PM"
+                                  :Sun "11AM - 3PM, 4:30 PM - 8PM"}
+
+
+                    "rand-grill" {:Mon  "11AM - 3PM, 4:30 PM - 8PM"
+                                                      :Tues "11AM - 3PM, 4:30 PM - 8PM"
+                                                      :Wed "11AM - 3PM, 4:30 PM - 8PM"
+                                                      :Thurs "11AM - 3PM, 4:30 PM - 8PM"
+                                                      :Fri "11AM - 3PM, 4:30 PM - 8PM"
+                                                      :Sat "4:30 PM - 8PM"
+                                                      :Sun "4:30 PM - 8PM"}
+
+                    "rand-sandwich" {:Mon  "11AM - 3PM"
+                                                      :Tues "11AM - 3PM"
+                                                      :Wed "11AM - 3PM"
+                                                      :Thurs "11AM - 3PM"
+                                                      :Fri "11AM - 3PM"
+                                                      :Sat "Closed"
+                                                      :Sun "Closed"}
+
+                    "rand-tortelini" {:Mon  "Closed"
+                                                      :Tues "4:30PM - 8PM"
+                                                      :Wed "Closed"
+                                                      :Thurs "Closed"
+                                                      :Fri "Closed"
+                                                      :Sat "Closed"
+                                                      :Sun "Closed"}
+
+                    "grins" {:Mon  "7:30 AM - 9 PM"
+                                                      :Tues "7:30AM - 9PM"
+                                                      :Wed "7:30AM - 9PM"
+                                                      :Thurs "7:30AM - 9PM"
+                                                      :Fri "7:30AM - 3PM"
+                                                      :Sat "Closed"
+                                                      :Sun "Closed"}
+                    "commons" {:Mon  "7:30 AM - 9 PM"
+                                                      :Tues "7AM - 8PM"
+                                                      :Wed "7AM - 8PM"
+                                                      :Thurs "7AM - 8PM"
+                                                      :Fri "7 AM - 8 PM"
+                                                      :Sat "10AM - 2PM, 4:30PM - 8PM"
+                                                      :Sun "10AM - 2PM, 4:30PM - 8PM"}
+                    "bronson" {:Mon  "7:30AM - 10AM, 11AM - 7:30PM"
+                                                      :Tues "7:30AM - 10AM, 11AM - 7:30PM"
+                                                      :Wed "7:30AM - 10AM, 11AM - 7:30PM"
+                                                      :Thurs "7:30AM - 10AM, 11AM - 7:30PM"
+                                                      :Fri "7:30AM - 10AM"
+                                                      :Sat "5:30 PM - 7:30PM"
+                                                      :Sun "5:30 PM - 7:30PM"}})
+
+
 
 
 ;; This is a helper function that you might want to use to implement
@@ -259,6 +319,27 @@
     [resp (sorted-map :ks ks :action :dissoc-in)]
     resp))
 
+
+(defn date-time-now-str []
+            #?(:clj
+               (.format
+                 (java.time.format.DateTimeFormatter/ofPattern
+                  "E MM/dd/yyyy HH:mm"
+                  java.util.Locale/ENGLISH)
+                 (java.time.LocalDateTime/now))
+               :cljs
+               (let [d (js/Date.)]
+                 (str
+                   (get ["Sun" "Mon" "Tues" "Wed" "Thurs" "Fri" "Sat"] (.getDay d)) " "
+                   (+ (.getMonth d) 1) "/"
+                   (.getDate d) "/"
+                   (.getFullYear d) " "
+                   (- (.getHours d) 5) ":"
+                   (.getMinutes d)))))
+
+
+
+
 ;; Asgn 3.
 ;;
 ;; @Todo: Create a function called "experts-register"
@@ -276,8 +357,9 @@
 ;; See the integration test in See handle-message-test for the
 ;; expectations on how your code operates
 ;;
-(defn experts-register [experts topic id info]
-  [(action-insert [:expert topic id] info)])
+(defn experts-register [experts topic date info]
+  [(action-insert [:report] (assoc experts topic {date info}))])
+
 
 
 
@@ -298,11 +380,13 @@
 ;; expectations on how your code operates
 ;;
 (defn experts-unregister [experts topic id]
-  (action-remove [:expert topic id]))
+  (action-remove [:report topic id]))
 
 (defn experts-question-msg [experts question-words]
   (str "Asking " (count experts) " expert(s) for an answer to: \""
        (string/join " " question-words) "\""))
+
+
 
 ;; Asgn 3.
 ;;
@@ -363,16 +447,30 @@
 ;; See the integration test in See handle-message-test for the
 ;; expectations on how your code operates
 ;;
-(defn ask-experts [experts {:keys [args user-id]}]
-  (let [question (string/join " "(rest args))]
-    (if (= (count args) 1)
-      [[], "You must ask a valid question."]
-      (if (= (count experts) 0)
-        [[], "There are no experts on that topic."]
-        [(concat
-          (action-send-msgs experts question)
-          (action-inserts [:conversations] experts user-id))
-         (experts-question-msg experts (rest args))]))))
+(defn ask-experts [experts {:keys [args time]}]
+  (let [day (first (string/split (date-time-now-str) #" "))
+        hours (get (get times (first args)) day)
+        location (first args)
+        wait-data (get experts location)
+        last-report (first (sort (keys wait-data)))
+        wait-time (get wait-data last-report)
+        day-of-week (first (string/split (date-time-now-str) #" "))
+        _ (println "day-of-week: " day-of-week)
+        open-close (get-in times [location (keyword day-of-week)])
+        _ (println "map test: " (get times location))]
+       (if (not (contains? times (first args)))
+         [[], "Please ask for a valid campus dining line."]
+         (if (= wait-time nil)
+           [[], "There are no wait times reported for that line."]
+           [[],
+            (str "The wait time is "
+              wait-time " minutes, and was reported at "
+              last-report ". The following hours are " open-close ".")]))))
+              ;(first (first (get-in experts time))) " with hours as " hours ".")]))))
+;need to also check if they enter a line that does not exist
+
+; (first (string/split (date-time-now-str) #" "))
+
 
 ;; Asgn 3.
 ;;
@@ -430,14 +528,9 @@
 ;; See the integration test in See handle-message-test for the
 ;; expectations on how your code operates
 ;;
-(defn answer-question [conversation {:keys [args]}]
-  (let [answer (string/join " " args)]
-    (if (= conversation nil)
-      [[], "You haven't been asked a question."]
-      (if (= (count args) 0)
-        [[], "You did not provide an answer."]
-        [[(action-send-msg conversation answer)]
-         "Your answer was sent."]))))
+(defn answer-question [conversation {:keys [info]}]
+    [(action-send-msg conversation info)])
+
 
 
 ;; Asgn 3.
@@ -481,8 +574,19 @@
 ;; See the integration test in See handle-message-test for the
 ;; expectations on how your code operates
 (defn add-expert [experts {:keys [args user-id]}]
-  [(experts-register experts (first args) user-id {})
-   (str user-id " is now an expert on " (first args) ".")])
+  (if (not (contains? times (first args)))
+      [[], "Please report for a valid campus dining line."]
+      (if (= (first (rest args)) nil)
+        [[], "Please report a wait time for the line."]
+        [(experts-register experts (first args) (date-time-now-str) (first (rest args)))
+         (str user-id " successfully reported a wait time for " (first args)
+          " as " (first (rest args)) " minutes.")])))
+
+
+(defn lines-info []
+    (let [str  "The lines are rand-bowls, rand-grill, rand-sandwich,
+        rand-tortelini, grins, commons, bronson and."]
+      str))
 
 
 ;; Don't edit!
@@ -495,9 +599,14 @@
              "welcome"  (stateless welcome)
              "homepage" (stateless homepage)
              "office"   (stateless office-hours)
-             "expert"   add-expert
+             "report"   add-expert
              "ask"      ask-experts
-             "answer"   answer-question})
+             "answer"   answer-question
+             "lines"    (stateless lines-info)})
+
+
+;use same query that you are using for ask, use the same format ([], print) and can print wiat times for all lines
+
 
 
 
@@ -513,8 +622,14 @@
 ;; Don't edit!
 (defn experts-on-topic-query [state-mgr pmsg]
   (let [[topic]  (:args pmsg)]
-    (list! state-mgr [:expert topic])))
+    (get! state-mgr [:report])))
 
+(defn experts-on-topic-query-ask [state-mgr pmsg]
+  (println "experts-on-topic-query :args " (:args pmsg))
+  (let [[topic]  (:args pmsg)
+        result   (get! state-mgr [:report])]
+    (println "query result " result)
+    result))
 
 ;; Don't edit!
 (defn conversations-for-user-query [state-mgr pmsg]
@@ -524,9 +639,12 @@
 
 ;; Don't edit!
 (def queries
-  {"expert" experts-on-topic-query
-   "ask"    experts-on-topic-query
+  {
+   "report" experts-on-topic-query
+   "ask"    experts-on-topic-query-ask
    "answer" conversations-for-user-query})
+
+
 
 
 ;; Don't edit!
@@ -631,7 +749,7 @@
           pmsg   (assoc (parsed-msg msg) :user-id src)
           ;_      (println "  Parsed msg:" pmsg)
           state  (<! (read-state state-mgr pmsg))
-          ;_      (println "  Read state:" state)
+          _      (println "  Read state:" state)
           hdlr   (rtr pmsg)
           ;_      (println "  Hdlr:" hdlr)
           [as o] (hdlr state pmsg)

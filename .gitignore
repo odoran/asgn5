@@ -1,3 +1,4 @@
+/credentials
 /deploy.edn
 node_modules
 /.shadow-cljs
