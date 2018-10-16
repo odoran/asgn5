@@ -132,18 +132,18 @@
                                 [:a :f :c]]
                               1))))))
 
-(deftest action-insert-test
-  (testing "That action insert returns a correctly formatted map"
-    (is (= #{:action :ks :v}
-           (into #{}(keys (action-insert [:a :b] {:foo 1})))))
-    (is (= #{:assoc-in [:a :b] {:foo 1}}
-           (into #{}(vals (action-insert [:a :b] {:foo 1})))))
-    (is (= :assoc-in
-           (:action (action-insert [:a :b] {:foo 1}))))
-    (is (= {:foo 1}
-           (:v (action-insert [:a :b] {:foo 1}))))
-    (is (= [:a :b]
-           (:ks (action-insert [:a :b] {:foo 1}))))))
+;(deftest action-insert-test
+  ;(testing "That action insert returns a correctly formatted map"
+    ;(is (= #{:action :ks :v}
+           ;(into #{}(keys (action-insert [:a :b] {:foo 1}))))))
+    ;(is (= #{:assoc-in [:a :b] {:foo 1}}
+           ;(into #{}(vals (action-insert [:a :b] {:foo 1}))))))
+    ;(is (= :assoc-in
+           ;(:action (action-insert [:a :b] {:foo 1})))))
+    ;(is (= {:foo 1}
+           ;(:v (action-insert [:a :b] {:foo 1})))))
+    ;(is (= [:a :b]
+           ;(:ks (action-insert [:a :b] {:foo 1})))))))
 
 
 (deftest action-remove-test
@@ -196,63 +196,33 @@
                     system
                     "test-user"
                     "report rand-bowls 3"))))
+      (is (= "test-user successfully reported a wait time for rand-bowls as 10 minutes."
+             (<!! (handle-message
+                   system
+                   "test-user"
+                   "report rand-bowls 10"))))
+      (is (= "test-user successfully reported a wait time for rand-sandwich as 15 minutes."
+             (<!! (handle-message
+                   system
+                   "test-user"
+                   "report rand-bowls 15"))))
       (is (= "The wait time is 3 minutes."
              (<!! (handle-message
-                    system
-                    "test-user"
-                    "ask rand-bowls"))))
-      (is (= "That is not a valid dining line."
-             (<!! (handle-message)
-                  system
-                  "test-user"
-                  "ask rand-bows")))
-      (is (= "what burger"
-             (<!! (pending-send-msgs system "test-user"))))
-      (is (= "test-user2 is now an expert on food."
+                                  system
+                                  "test-user"
+                                  "ask rand-bowls"))))
+      (is (= "Please report for a valid campus dining line."
              (<!! (handle-message
                     system
                     "test-user2"
-                    "expert food"))))
-      (is (= "Asking 2 expert(s) for an answer to: \"what burger\""
+                    "report rand-bo"))))
+      (is (= "Please report a wait time for the line."
              (<!! (handle-message
                     system
                     "test-user"
-                    "ask food what burger"))))
-      (is (= "what burger"
-             (<!! (pending-send-msgs system "test-user"))))
-      (is (= "what burger"
-             (<!! (pending-send-msgs system "test-user2"))))
-      (is (= "You must ask a valid question."
-             (<!! (handle-message
-                    system
-                    "test-user"
-                    "ask food "))))
-      (is (= "test-user is now an expert on nashville."
-             (<!! (handle-message
-                    system
-                    "test-user"
-                    "expert nashville"))))
-      (is (= "Asking 1 expert(s) for an answer to: \"what bus\""
-             (<!! (handle-message
+                    "report rand-bowls"))))
+      (is (= "Please ask for a valid campus dining line."
+              (<!! (handle-message
                     system
                     "test-user2"
-                    "ask nashville what bus"))))
-      (is (= "what bus"
-             (<!! (pending-send-msgs system "test-user"))))
-      (is (= "Your answer was sent."
-             (<!! (handle-message
-                   system
-                   "test-user"
-                   "answer the blue bus"))))
-      (is (= "the blue bus"
-             (<!! (pending-send-msgs system "test-user2"))))
-      (is (= "You did not provide an answer."
-             (<!! (handle-message
-                   system
-                   "test-user"
-                   "answer"))))
-      (is (= "You haven't been asked a question."
-             (<!! (handle-message
-                   system
-                   "test-user3"
-                   "answer the blue bus")))))))
+                    "ask rand-bo")))))))

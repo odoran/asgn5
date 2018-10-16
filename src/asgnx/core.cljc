@@ -328,13 +328,16 @@
                   java.util.Locale/ENGLISH)
                  (java.time.LocalDateTime/now))
                :cljs
-               (let [d (js/Date.)]
+               (let [d (js/Date.)
+                     hour (- (.getHours d) 5)]
                  (str
                    (get ["Sun" "Mon" "Tues" "Wed" "Thurs" "Fri" "Sat"] (.getDay d)) " "
                    (+ (.getMonth d) 1) "/"
                    (.getDate d) "/"
                    (.getFullYear d) " "
-                   (- (.getHours d) 5) ":"
+                   (if (neg? hour)
+                       (+ hour 12)
+                       hour) ":"
                    (.getMinutes d)))))
 
 
@@ -584,8 +587,7 @@
 
 
 (defn lines-info []
-    (let [str  "The lines are rand-bowls, rand-grill, rand-sandwich,
-        rand-tortelini, grins, commons, bronson and."]
+    (let [str  "The lines are rand-bowls, rand-grill, rand-sandwich, rand-tortelini, grins, commons, bronson and."]
       str))
 
 
