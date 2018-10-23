@@ -207,6 +207,10 @@
 ;; This function creates a date object that includes
 ;; the format "E MM/dd/yyyy HH:mm"
 
+;; This will work under the assumption that students only submit times during
+;; the hours that the lines are open. In an update, it may be worth it to get
+;; rid of the time stamp if it confuses users.
+
 (defn date-time-now-str []
             #?(:clj
                (.format

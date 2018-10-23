@@ -135,6 +135,7 @@
 (def send-action-handlers
   {:send action-send})
 
+;; testing the new functionality
 (deftest handle-message-test
   (testing "the integration and handling of messages"
     (let [ehdlrs (merge
