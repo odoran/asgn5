@@ -16,4 +16,3 @@
 
         (println "Got response:" resp)
         (is (= 200 (:status resp)))))))
-      

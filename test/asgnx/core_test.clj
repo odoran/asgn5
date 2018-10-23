@@ -154,6 +154,11 @@
                    system
                    "test-user"
                    "lines-info"))))
+      (is (= "https://campusdining.vanderbilt.edu"
+             (<!! (handle-message
+                   system
+                   "test-user"
+                    "homepage"))))
       (is (= "test-user successfully reported a wait time for rand-bowls as 3 minutes."
              (<!! (handle-message
                     system

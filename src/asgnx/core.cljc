@@ -8,18 +8,21 @@
 (defn safe-key-str [s]
     (string/replace s #"[^a-zA-Z0-9]" ""))
 
+;; A def for the campus dining home page URL.
+(def campusdining-url "https://campusdining.vanderbilt.edu")
 
-(def times {"rand-bowls" {:Mon  "11AM - 3PM,4:30 PM - 8PM"
-                                  :Tue "11AM - 3PM"
+
+;; a map for all the campus dining lines and their weekly hours
+(def times {"rand-bowls" {:Mon  "11AM - 3PM, 4:30 PM - 8PM"
+                                  :Tues "11AM - 3PM"
                                   :Wed "11AM - 3PM, 4:30 PM - 8PM"
                                   :Thurs "11AM - 3PM, 4:30 PM - 8PM"
                                   :Fri "11AM - 3PM"
                                   :Sat "11AM - 3PM"
                                   :Sun "11AM - 3PM, 4:30 PM - 8PM"}
 
-
                     "rand-grill" {:Mon  "11AM - 3PM, 4:30 PM - 8PM"
-                                                      :Tue "11AM - 3PM, 4:30 PM - 8PM"
+                                                      :Tues "11AM - 3PM, 4:30 PM - 8PM"
                                                       :Wed "11AM - 3PM, 4:30 PM - 8PM"
                                                       :Thurs "11AM - 3PM, 4:30 PM - 8PM"
                                                       :Fri "11AM - 3PM, 4:30 PM - 8PM"
@@ -27,7 +30,7 @@
                                                       :Sun "4:30 PM - 8PM"}
 
                     "rand-sandwich" {:Mon  "11AM - 3PM"
-                                                      :Tue "11AM - 3PM"
+                                                      :Tues "11AM - 3PM"
                                                       :Wed "11AM - 3PM"
                                                       :Thurs "11AM - 3PM"
                                                       :Fri "11AM - 3PM"
@@ -35,7 +38,7 @@
                                                       :Sun "Closed"}
 
                     "rand-tortelini" {:Mon  "Closed"
-                                                      :Tue "4:30PM - 8PM"
+                                                      :Tues "4:30PM - 8PM"
                                                       :Wed "Closed"
                                                       :Thurs "Closed"
                                                       :Fri "Closed"
@@ -43,21 +46,23 @@
                                                       :Sun "Closed"}
 
                     "grins" {:Mon  "7:30 AM - 9 PM"
-                                                      :Tue "7:30AM - 9PM"
+                                                      :Tues "7:30AM - 9PM"
                                                       :Wed "7:30AM - 9PM"
                                                       :Thurs "7:30AM - 9PM"
                                                       :Fri "7:30AM - 3PM"
                                                       :Sat "Closed"
                                                       :Sun "Closed"}
+
                     "commons" {:Mon  "7:30 AM - 9 PM"
-                                                      :Tue "7AM - 8PM"
+                                                      :Tues "7AM - 8PM"
                                                       :Wed "7AM - 8PM"
                                                       :Thurs "7AM - 8PM"
                                                       :Fri "7 AM - 8 PM"
                                                       :Sat "10AM - 2PM, 4:30PM - 8PM"
                                                       :Sun "10AM - 2PM, 4:30PM - 8PM"}
+
                     "bronson" {:Mon  "7:30AM - 10AM, 11AM - 7:30PM"
-                                                      :Tue "7:30AM - 10AM, 11AM - 7:30PM"
+                                                      :Tues "7:30AM - 10AM, 11AM - 7:30PM"
                                                       :Wed "7:30AM - 10AM, 11AM - 7:30PM"
                                                       :Thurs "7:30AM - 10AM, 11AM - 7:30PM"
                                                       :Fri "7:30AM - 10AM"
@@ -224,7 +229,6 @@
 
 
 
-
 ;; experts-register
 ;; This function takes the current application `topic`, a `date`
 ;; 'info', and information to register a certain dining hall waiting
@@ -272,6 +276,15 @@
               last-report ". The following hours are " open-close ".")]))))
 
 
+(defn ask-experts-all [experts {:keys [args]}]
+       [[],
+        (for [e experts]
+          (let [location (first e)
+                wait-data (get experts location)
+                last-report (first (sort (keys wait-data)))
+                wait-time (get wait-data last-report)]
+            (str (str (first e) ": " wait-time  " minutes \n"))))])
+
 
 ;; add-expert
 ;; This function takes in experts, and the args and time keys from experts.
@@ -300,6 +313,8 @@ commons
 bronson"]
      str))
 
+(defn homepage [_] campusdining-url)
+
 
 ;; Don't edit!
 (defn stateless [f]
@@ -310,9 +325,10 @@ bronson"]
 (def routes {"default"  (stateless (fn [& args] "Unknown command."))
              "report"   add-expert
              "ask"      ask-experts
-             "lines-info"    (stateless lines-info)})
+             "check"  ask-experts-all
+             "lines-info"    (stateless lines-info)
+             "homepage"    (stateless homepage)})
 
-;use same query that you are using for ask, use the same format ([], print) and can print wiat times for all lines
 
 
 
@@ -329,18 +345,11 @@ bronson"]
     result))
 
 
-(defn conversations-for-user-query [state-mgr pmsg]
-  (let [user-id (:user-id pmsg)]
-    (get! state-mgr [:conversations user-id])))
-
-
-
 (def queries
   {
    "report" experts-on-topic-query
-   "ask"    experts-on-topic-query-ask})
-   
-
+   "ask"    experts-on-topic-query-ask
+   "check" experts-on-topic-query-ask})
 
 
 
